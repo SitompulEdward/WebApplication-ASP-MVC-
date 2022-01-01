@@ -1,0 +1,17 @@
+﻿<div class="text-center">
+    <div class="card box-shadow m-lg-5 ">
+        <h1>Mobil @ViewBag.namaSaya</h1>
+        <hr />
+
+        @foreach(var data in ViewBag.mobils){
+            <h2>@data.IDRegistrasi</h2>
+            <h2>@data.Tipe</h2>
+            <h2>@data.Merk</h2>
+            <h2>@data.Varian</h2>
+            <hr />
+        }
+
+
+
+    </div>
+</div>

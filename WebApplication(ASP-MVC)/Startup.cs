@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication_ASP_MVC_.Models;
 
 namespace WebApplication_ASP_MVC_
 {
@@ -23,6 +25,10 @@ namespace WebApplication_ASP_MVC_
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(o =>
+            {
+                o.UseMySQL(Configuration.GetConnectionString("mysql"));
+            });
             services.AddControllersWithViews();
         }
 
@@ -50,7 +56,7 @@ namespace WebApplication_ASP_MVC_
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Mobil}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

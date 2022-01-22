@@ -38,6 +38,11 @@ namespace WebApplication_ASP_MVC_.Controllers
             return View();
         }
 
+        public IActionResult Link()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

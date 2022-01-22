@@ -1,0 +1,18 @@
+﻿@model User
+
+@{
+    Layout = "_LayoutAkun";
+}
+
+<p>
+    Silahkan Masuk
+</p>
+
+<form asp-for"Masuk" method="post">
+    <input asp-for="Username" placeholder="Username" />
+    <input asp-for="Password" placeholder="Password" />
+
+    <input type="submit" value="Masuk" />
+</form>
+
+<a asp-action="Daftar">Saya Belum Punya Akun</a>

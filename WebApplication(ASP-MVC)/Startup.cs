@@ -29,6 +29,14 @@ namespace WebApplication_ASP_MVC_
             {
                 o.UseMySQL(Configuration.GetConnectionString("mysql"));
             });
+
+            services.AddAuthentication("CookieAuth")
+                .AddCookie("CookieAuth", option => 
+                {
+                    option.LoginPath = "/Akun/Masuk";    
+                
+                });
+
             services.AddControllersWithViews();
         }
 
@@ -49,6 +57,8 @@ namespace WebApplication_ASP_MVC_
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,9 @@ using WebApplication_ASP_MVC_.Models;
 
 namespace WebApplication_ASP_MVC_.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
-    {
+    { 
         private readonly AppDbContext _context;
         public BlogController(AppDbContext context)
         {

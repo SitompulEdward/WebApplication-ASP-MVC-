@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using WebApplication_ASP_MVC_.Helper
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,13 +13,13 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication_ASP_MVC_</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication_ASP_MVC</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-md-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -25,15 +27,30 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Tampil Data</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Show Data</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Create">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Akun" asp-action="Daftar">Daftar</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Create">Create Blog</a>
                         </li>
                     </ul>
+                    <div class="justify-content-end">          
+                        <ul class="navbar-nav flex-md-grow-1">
+                            @{
+                                string cek = User.GetUsername();
+                                if (cek != "")
+                                {
+                                    <b>@User.GetUsername()</b>
+                                    <li class="nav-item ">
+                                        <a asp-area="" asp-controller="Akun" asp-action="Logout"
+                                           class=" nav-link text-white btn btn-success bi bi-box-arrow-right" onclick="if (!confirm('Yakin Untuk Keluar')) { return false; }">Logout</a>
+                                    </li>
+                                }
+                            }
+                            <li class="nav-item ">
+                                <a class="nav-link text-white btn btn-primary" asp-area="" asp-controller="Akun" asp-action="Masuk">Sign in</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -55,3 +72,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+ 

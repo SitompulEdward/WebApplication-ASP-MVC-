@@ -45,7 +45,7 @@ namespace WebApplication_ASP_MVC_.Controllers
             //                                  ).FirstOrDefault();
             //if (cari != null)
             //{
-            //    return RedirectToAction(controllerName:"Blog", actionName:"Index");
+            //    return RedirectToAction(controllerName: "Blog", actionName: "Index");
             //}
 
             var cariUsername = _context.Tb_User.Where(x => x.Username == datanya.Username).FirstOrDefault();
@@ -74,12 +74,12 @@ namespace WebApplication_ASP_MVC_.Controllers
                         )
                     );
 
-                   if(cariUsername.Roles.Id == "1")
+                    if (cariUsername.Roles.Id == "1")
                     {
                         return RedirectToAction(controllerName: "Blog", actionName: "Index");
                     }
 
-                    return RedirectToAction(controllerName: "Home", actionName: "Privacy");
+                    return RedirectToAction(controllerName: "Blog", actionName: "Index");
                 }
                 ViewBag.pesan = "Password Salah !";
                 return View(datanya);

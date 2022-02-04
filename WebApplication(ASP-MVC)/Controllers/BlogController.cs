@@ -17,10 +17,10 @@ namespace WebApplication_ASP_MVC_.Controllers
             _context = context;
         }
 
-        public IActionResult Create()
-        {
-            return View(); // menampilkan kolom inputan
-        }
+        //public IActionResult Create()
+        //{
+        //    return View(); // menampilkan kolom inputan
+        //}
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync(Blog parameter)

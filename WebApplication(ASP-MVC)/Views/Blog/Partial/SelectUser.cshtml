@@ -1,0 +1,53 @@
+﻿@model BlogDashboard
+
+<br />
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Tabel User</h4>
+                        <div class="table-responsive">
+                            <p>
+                                <a asp-action="Create">Create New</a>
+                            </p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Username
+                                        </th>
+                                        <th>
+                                            Password
+                                        </th>
+                                        <th> Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.user)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.Username
+                                            </td>
+                                            <td>
+                                                @item.Password
+                                            </td>
+                                            <td>
+                                                <a asp-route-id="@item.Username" class="btn btn-primary">Edit</a>
+                                                <a asp-route-id="@item.Username" class="btn btn-info">Details</a>
+                                                <a asp-route-id="@item.Username" class="btn btn-warning">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

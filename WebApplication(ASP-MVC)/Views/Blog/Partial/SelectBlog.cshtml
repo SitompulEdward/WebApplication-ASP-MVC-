@@ -1,0 +1,72 @@
+﻿@model BlogDashboard
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Tabel Blog</h4>
+                        <div class="table-responsive">
+                            <p>
+                                <a asp-action="Create">Create New</a>
+                            </p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Create Date
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            User
+                                        </th>
+                                        <th> Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.blog)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.Id
+                                            </td>
+                                            <td>
+                                                @item.Title
+                                            </td>
+                                            <td>
+                                                @item.CreateDate
+                                            </td>
+                                            <td>
+                                                @item.Status
+                                            </td>
+                                            <td>
+                                                @item.User.Username
+                                            </td>
+                                            <td>
+                                                <a asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                                <a asp-controller="Blog" asp-action="DetailsBlog" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                                                <a asp-action="Delete" asp-route-id="@item.Id" 
+                                                   class="btn btn-warning" title="Hapus" 
+                                                   onclick="if (!confirm('Yakin Akan Menghapus Blog ini ?')) { return false; }">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model DetailBlog
+
+<div class="align-items-center">
+    <h3>Details Blog</h3>
+</div>
+<hr />
+<div class="row">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+
+            @foreach (var item in Model.blog)
+            {
+                <div class="form-group">
+                    <label class="control-label"></label>Tittle
+                    <input class="form-control" value="@item.Title" /> 
+                    <span class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label"></label>Content
+                    <textarea class="form-control" style="height: 100px" >@item.Content</textarea>
+                    <span class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label"></label>Create Date
+                    <input class="form-control" value="@item.CreateDate"/> 
+                    <span class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label"></label>Status
+                    <input class="form-control" value=" @item.Status" />
+                    <span class="text-danger"></span>
+                </div>
+
+            }
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="index">Back to List</a>
+</div>
+

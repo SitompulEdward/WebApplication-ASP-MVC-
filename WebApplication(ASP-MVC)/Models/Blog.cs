@@ -24,4 +24,27 @@ namespace WebApplication_ASP_MVC_.Models
         public bool Status { get; set; }
         public User User { get; set; }
     }
+
+    public class BlogDashboard
+    {
+        public List<Blog> blog { get; set; }
+        public List<User> user { get; set; }
+
+        public BlogDashboard()
+        {
+            blog = new List<Blog>();
+            user = new List<User>();
+        }
+    }
+
+    public class DetailBlog
+    {
+        public List<Blog> blog { get; set; }
+
+        public DetailBlog()
+        {
+            blog = new List<Blog>();
+        }
+    }
+
 }

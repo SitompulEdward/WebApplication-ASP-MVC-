@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication_ASP_MVC_.Helper;
 using WebApplication_ASP_MVC_.Models;
+using WebApplication_ASP_MVC_.Services;
 
 namespace WebApplication_ASP_MVC_.Controllers
 {
@@ -14,9 +15,11 @@ namespace WebApplication_ASP_MVC_.Controllers
     public class BlogController : Controller
     { 
         private readonly AppDbContext _context;
-        public BlogController(AppDbContext context)
+        private readonly IBlogService _blogService;
+        public BlogController(AppDbContext context, IBlogService service)
         {
             _context = context;
+            _blogService = service;
         }
 
         public IActionResult Create()
@@ -89,6 +92,42 @@ namespace WebApplication_ASP_MVC_.Controllers
 
             return View(data) ;
 
+        }
+      
+        public async Task<IActionResult> Ubah(int id)
+        {
+            //var cari = await _context.Tb_Blog.FirstOrDefaultAsync(x => x.Id == id);
+            var cari = await _blogService.TampilBLogById(id);
+
+            if (cari == null)
+            {
+                return NotFound();
+            }
+
+            return View(cari);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Ubah(Blog data)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //_context.Tb_Blog.Update(data);
+                    //await _context.SaveChangesAsync();
+
+                    await _blogService.UpdateBlogAsync(data);
+                }
+                catch
+                {
+                    return NotFound();
+                }
+                return RedirectToAction("Index");
+                 
+            }
+            return View(data);
         }
 
     }

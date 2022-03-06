@@ -6,16 +6,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using WebApplication_ASP_MVC_.Helper;
 using WebApplication_ASP_MVC_.Models;
+using WebApplication_ASP_MVC_.Services;
 
 namespace WebApplication_ASP_MVC_.Controllers
 {
     public class AkunController : Controller
     {
         private readonly AppDbContext _context;
-        public AkunController(AppDbContext context)
+        private readonly EmailService _email;
+        public AkunController(AppDbContext context,EmailService e)
         {
             _context = context;
+            _email = e;
         }
 
         public IActionResult Daftar()
@@ -26,6 +30,10 @@ namespace WebApplication_ASP_MVC_.Controllers
         [HttpPost]
         public IActionResult Daftar(User datanya)
         {
+            int OTP = BanyakBantuan.BuatOTP();
+
+            bool hasil = _email.KirimEmail(datanya.Email, "Konfirmasi Daftar","<h1 style='color:red'> Assalamulaikum </h1>" + OTP);
+
             _context.Add(datanya);
             _context.SaveChanges();
 
@@ -63,7 +71,7 @@ namespace WebApplication_ASP_MVC_.Controllers
                     var daftar = new List<Claim>
                     {
                         new Claim ("Username", cariUsername.Username),
-                        new Claim("Role", cariUsername.Roles.Id)
+                        new Claim("Role", cariUsername.Roles.Name)
                     };
 
                     // proses daftar Auth
@@ -76,7 +84,10 @@ namespace WebApplication_ASP_MVC_.Controllers
 
                     if (cariUsername.Roles.Id == "1")
                     {
-                        return RedirectToAction(controllerName: "Blog", actionName: "Index");
+                        return Redirect("/admin/home");
+                    }else if(cariUsername.Roles.Id == "2")
+                    {
+                        return Redirect("/user/home");
                     }
 
                     return RedirectToAction(controllerName: "Blog", actionName: "Index");

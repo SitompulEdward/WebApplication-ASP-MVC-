@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication_ASP_MVC_.Models;
+using WebApplication_ASP_MVC_.Repository.BlogRepository;
+using WebApplication_ASP_MVC_.Services;
 
 namespace WebApplication_ASP_MVC_
 {
@@ -33,9 +35,18 @@ namespace WebApplication_ASP_MVC_
             services.AddAuthentication("CookieAuth")
                 .AddCookie("CookieAuth", option => 
                 {
-                    option.LoginPath = "/Akun/Masuk";    
+                    option.LoginPath = "/Akun/Masuk";
+                    option.AccessDeniedPath = "/Home/Dilarang";
                 
                 });
+
+            services.AddScoped<IBlogRepository, BlogRepository>();
+
+            services.AddScoped<IBlogService, BlogService>();
+
+            services.AddTransient<EmailService>();
+
+            services.Configure<Email>(Configuration.GetSection("AturEmail"));
 
             services.AddControllersWithViews();
         }
@@ -64,9 +75,19 @@ namespace WebApplication_ASP_MVC_
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    name: "AreaAdmin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "AreaUser",
+                    areaName: "User",
+                    pattern: "User/{controller=Home}/{action=Index}/{id?}");
+                
+               endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

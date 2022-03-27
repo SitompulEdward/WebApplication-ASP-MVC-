@@ -6,7 +6,7 @@
     <hr />
     <div class="row">
         <div class="card-body">
-            <form asp-action="Create" method="post">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label asp-for="Title" class="control-label"></label>
                     <input asp-for="Title" placeholder="Judul nya disini" class="form-control" />
@@ -21,6 +21,11 @@
                     <label asp-for="CreateDate" class="control-label"></label>
                     <input asp-for="CreateDate" class="form-control" />
                     <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input type="file" name="image" accept=".jpg,.png" multiple class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">

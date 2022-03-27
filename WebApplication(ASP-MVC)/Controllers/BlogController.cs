@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,7 +29,7 @@ namespace WebApplication_ASP_MVC_.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(Blog parameter)
+        public IActionResult CreateAsync(Blog parameter, IFormFile image)
         {
             if (ModelState.IsValid) 
             {
@@ -36,14 +37,16 @@ namespace WebApplication_ASP_MVC_.Controllers
 
                 // parameter.Id = BuatPrimary.primary(); // untuk membuat primary key dari helper
 
-                string nama = User.GetUsername();
+                // string nama = User.GetUsername();
 
-                parameter.User = _context.Tb_User.FirstOrDefault(x => x.Username == nama);
+                // parameter.User = _context.Tb_User.FirstOrDefault(x => x.Username == nama);
 
 
 
-                _context.Add(parameter);
-               await _context.SaveChangesAsync();
+                // _context.Add(parameter);
+                //await _context.SaveChangesAsync();
+
+                _blogService.BuatBlog(parameter, User.GetUsername(), image);
 
                 return Redirect("Index"); // menerima inputan
             }

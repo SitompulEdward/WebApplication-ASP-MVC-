@@ -49,8 +49,8 @@ namespace WebApplication_ASP_MVC_.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "text", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
-                    Author = table.Column<string>(type: "text", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Image = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Username = table.Column<string>(type: "varchar(767)", nullable: true)
                 },

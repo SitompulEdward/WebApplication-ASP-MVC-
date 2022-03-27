@@ -9,7 +9,7 @@ using WebApplication_ASP_MVC_.Models;
 namespace WebApplication_ASP_MVC_.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220122123248_Tb_Blog")]
+    [Migration("20220308141540_Tb_Blog")]
     partial class Tb_Blog
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,16 +25,15 @@ namespace WebApplication_ASP_MVC_.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
 
                     b.Property<bool>("Status")
                         .HasColumnType("tinyint(1)");

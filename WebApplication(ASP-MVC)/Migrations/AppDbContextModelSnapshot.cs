@@ -23,16 +23,15 @@ namespace WebApplication_ASP_MVC_.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
 
                     b.Property<bool>("Status")
                         .HasColumnType("tinyint(1)");

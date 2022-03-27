@@ -21,6 +21,7 @@ namespace WebApplication_ASP_MVC_.Models
         [Required]
         [DisplayName("Tanggal Pembuatan")]
         public DateTime CreateDate { get; set; }
+        public string Image { get; set; }
         public bool Status { get; set; }
         public User User { get; set; }
     }

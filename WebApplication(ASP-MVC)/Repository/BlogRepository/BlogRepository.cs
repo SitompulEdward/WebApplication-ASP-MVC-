@@ -26,6 +26,7 @@ namespace WebApplication_ASP_MVC_.Repository.BlogRepository
 
         public async Task<bool> BuatBlogAsync(Blog datanya)
         {
+            datanya.Id = 1;
             _blogDB.Tb_Blog.Add(datanya);
             await _blogDB.SaveChangesAsync();
             

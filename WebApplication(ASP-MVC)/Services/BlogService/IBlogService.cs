@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace WebApplication_ASP_MVC_.Services
     {
         Task<List<Blog>> TampilSemuaData();
         Task<Blog> TampilBLogById(int id);
-        Task<bool> BuatBlog(Blog datanya, string username);
+        Task<bool> BuatBlog(Blog datanya, string username, IFormFile filenya);
         Task<bool> HapusBlog(int id);
         Task<bool> UpdateBlogAsync(Blog data);
     }

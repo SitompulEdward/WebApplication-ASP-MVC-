@@ -46,6 +46,8 @@ namespace WebApplication_ASP_MVC_
 
             services.AddTransient<EmailService>();
 
+            services.AddTransient<FileService>();
+
             services.Configure<Email>(Configuration.GetSection("AturEmail"));
 
             services.AddControllersWithViews();
